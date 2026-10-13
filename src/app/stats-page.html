@@ -1,0 +1,10 @@
+<main>
+  <h2>Statistiques</h2>
+  <dl>
+    <div><dt>Toutes les tâches</dt><dd>{{ total() }}</dd></div>
+    <div><dt>Effectuées</dt><dd>{{ completed() }}</dd></div>
+    <div><dt>En cours</dt><dd>{{ remaining() }}</dd></div>
+    <div><dt>Poucentage de tâches effectuées</dt><dd>{{ percentage() }} %</dd></div>
+  </dl>
+  <a routerLink="/">Retour à la liste</a>
+</main>

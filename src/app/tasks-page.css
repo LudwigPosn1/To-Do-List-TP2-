@@ -1,0 +1,74 @@
+main {
+  max-width: 52rem;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.error-banner,
+.error {
+  color: #a40000;
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.filters label {
+  display: grid;
+  gap: 0.35rem;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #ccc;
+}
+
+.task-content {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.task-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.task-content p {
+  margin: 0.4rem 0;
+}
+
+.task-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.completed {
+  color: #555;
+  text-decoration: line-through;
+}
+
+.status {
+  color: #444;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 36rem) {
+  li {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}

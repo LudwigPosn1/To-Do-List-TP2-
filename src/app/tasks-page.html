@@ -1,0 +1,98 @@
+<main>
+  @if (persistenceError(); as error) {
+    <p class="error-banner" role="alert">{{ error }}</p>
+  }
+
+  <app-task-form
+    [task]="editingTask()"
+    (saved)="saveTask($event)"
+    (cancelled)="cancelEdit()"
+  />
+
+  <section aria-labelledby="task-list-heading">
+    <h2 id="task-list-heading">Mes tâches</h2>
+
+    <div class="filters">
+      <label>
+        Filtrer par statut
+        <select
+          name="filter"
+          [ngModel]="filter()"
+          (ngModelChange)="filter.set($event)"
+        >
+          <option value="all">Toutes</option>
+          <option value="todo">À faire</option>
+          <option value="done">Faites</option>
+        </select>
+      </label>
+
+      <label>
+        Rechercher
+        <input
+          name="search"
+          type="search"
+          placeholder="Titre ou description"
+          [ngModel]="search()"
+          (ngModelChange)="search.set($event)"
+        />
+      </label>
+
+      <label>
+        Trier par
+        <select
+          name="sort"
+          [ngModel]="sort()"
+          (ngModelChange)="sort.set($event)"
+        >
+          <option value="date">Échéance puis titre</option>
+          <option value="title">Titre</option>
+        </select>
+      </label>
+    </div>
+
+    @if (visibleTasks().length > 0) {
+      <ul>
+        @for (task of visibleTasks(); track task.id) {
+          <li>
+            <div class="task-content">
+              <label class="task-title">
+                <input
+                  type="checkbox"
+                  [checked]="task.status === 'done'"
+                  (change)="toggleTask(task.id)"
+                />
+                <span [class.completed]="task.status === 'done'">
+                  {{ task.title }}
+                </span>
+                <span class="status">
+                  {{ task.status === 'done' ? 'Faite' : 'À faire' }}
+                </span>
+              </label>
+              @if (task.description) {
+                <p>{{ task.description }}</p>
+              }
+              @if (task.dueDate) {
+                <time [attr.datetime]="task.dueDate">
+                  Échéance : {{ task.dueDate }}
+                </time>
+              }
+            </div>
+
+            <div class="task-actions">
+              <button type="button" (click)="editingId.set(task.id)">Modifier</button>
+              <button
+                type="button"
+                [attr.aria-label]="'Supprimer ' + task.title"
+                (click)="removeTask(task)"
+              >
+                Supprimer
+              </button>
+            </div>
+          </li>
+        }
+      </ul>
+    } @else {
+      <p>Aucune tâche ne correspond à ces critères.</p>
+    }
+  </section>
+</main>

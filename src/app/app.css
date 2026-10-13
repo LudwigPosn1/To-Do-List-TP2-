@@ -1,0 +1,21 @@
+header {
+  max-width: 52rem;
+  margin: 1.5rem auto;
+  padding: 0 1rem;
+  font-family: Arial, sans-serif;
+}
+
+nav {
+  display: flex;
+  gap: 1rem;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 0.75rem;
+}
+
+nav a {
+  color: #174ea6;
+}
+
+nav a.active {
+  font-weight: 700;
+}
